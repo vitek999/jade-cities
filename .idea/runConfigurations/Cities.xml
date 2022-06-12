@@ -1,0 +1,10 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Cities" type="Application" factoryName="Application">
+    <option name="MAIN_CLASS_NAME" value="jade.Boot" />
+    <module name="untitled" />
+    <option name="PROGRAM_PARAMETERS" value="-agents FirstPlayer:cities.FirstPlayer;SecondPlayer:cities.SecondPlayer" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
