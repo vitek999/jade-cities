@@ -20,13 +20,14 @@ open class CommonPlayer(
     private val isInitiator: Boolean = false,
     citiesFile: File,
     private val usedFile: File,
+    private val limit: Int = 100,
 ) : Agent() {
     init {
         check(usedFile.exists()) { "Used file should be exists" }
         check(citiesFile.exists()) { "Cities file should be exists" }
     }
 
-    private val cities = citiesFile.readText().split(CITIES_DELIMITER).shuffled()
+    private val cities = citiesFile.readText().split(CITIES_DELIMITER).shuffled().take(limit)
     private val usedCities get() = usedFile.readText().split(CITIES_DELIMITER)
 
     override fun setup() {
@@ -50,7 +51,7 @@ open class CommonPlayer(
     }
 
     private fun handleCityCommand(cityName: String) {
-        val newCityName = cities.firstOrNull { city -> city.startsWith(cityName.last()) && city !in usedCities }
+        val newCityName = cities.firstOrNull { city -> city.startsWith(cityName.last(), ignoreCase = true) && city !in usedCities }
         if (newCityName != null) {
             sendCity(newCityName)
         } else {
